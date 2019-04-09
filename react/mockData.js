@@ -35,6 +35,30 @@ module.exports=function(){
                     'number|1-100':1
                 })
             }
-        })
+        }),
+        carousel:_.times(5, function(n){
+            return{
+                id:n,
+                title:Mock.Random.cname(),
+                carImg:Mock.Random.image('200x100',Mock.Random.color()),
+                text:Mock.Random.cparagraph(),
+                carUrl:Mock.Random.url()
+            }
+        }),
+        news:_.times(50, function(n){
+            return{
+                id:n,
+                title:Mock.Random.ctitle(),
+                carImg:Mock.Random.image('200x100',Mock.Random.color()),
+                text:Mock.Random.cparagraph(),
+                carUrl:Mock.Random.url()
+            }
+        }),
+        newsKind:_.times(5, function(n){
+            return{
+                id:n,
+                title:Mock.Random.ctitle()
+            }
+        }),
     }
 }

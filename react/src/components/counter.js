@@ -21,13 +21,13 @@ import ListItem from './listitem'
 
 
 class Counter extends React.Component{
-    changeThisPage=(page)=>{
+    /* changeThisPage=(page)=>{
         //console.log("change",page);
         this.props.fetchList({page:page});
     }
     showPageList(){
-        console.log(3333);
-        console.log(this.props.total);
+        //console.log(3333);
+        //console.log(this.props.total);
         var jsx=[];
         if(this.props.total>0){
             var pages=Math.ceil(this.props.total/10);
@@ -39,8 +39,8 @@ class Counter extends React.Component{
     }
 
     showList(){
-        console.log(4444);
-        console.log(this.props.lists.length);
+        //console.log(4444);
+        //console.log(this.props.lists.length);
         var lists=this.props.lists;
         if(!lists){
             return <li>暂无数据</li>
@@ -52,17 +52,17 @@ class Counter extends React.Component{
             jsx.push(<ListItem key={i} product={lists[i]} addToCarts={this.props.addToCarts}/>)
         }
         return jsx;
-    }
+    } */
     render(){
         // 这里为了单独拿出变量，以便在之后不需要再 this.props.变量名
         // 直接 { 变量名 } 使用
-        console.log(this.props);
-        console.log(2222);
-        const {counter,counter1,lists,increase,decrease,carts,fetchList,addToCarts} = this.props;
+        //console.log(this.props);
+        //console.log(2222);
+        /* const {counter,counter1,lists,increase,decrease,carts,fetchList,addToCarts} = this.props;
 
         if(!lists){
             return <li>暂无数据</li>
-        }
+        } */
 
        /*  var jsx = [];
         for(var i=0;i<lists.length;i++){
@@ -71,22 +71,23 @@ class Counter extends React.Component{
         //console.log(this.props);
         return (
             <div>
-                Counter: {counter}
-                <br/>
+                这里是Counter 主页面
+                {/*Counter: {counter}
+                 <br/>
                 Counter1: {counter1}
                 <br/>
                 {this.showPageList()}
                 {this.showList()}
                 <br/>
                 <button onClick={increase}>increase</button>
-                <button onClick={decrease}>decrease</button>
+                <button onClick={decrease}>decrease</button> */}
             </div>
         )
     }
 
 
     componentDidMount(){
-        console.log('每次启动前请求数据');
+        //console.log('每次启动前请求数据');
         this.props.fetchList();
     }
 }

@@ -1,9 +1,11 @@
 import carts from './carts'
 import counter from './counter'
+import carousel from './carousel'
 
-import { combineReducers }from 'redux'
+import { combineReducers } from 'redux'
 
 export default combineReducers({
-    carts:carts,
-    counter:counter
+    carts,
+    counter,
+    carousel
 })

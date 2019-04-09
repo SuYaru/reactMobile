@@ -3,7 +3,7 @@ import { deflate } from 'zlib';
 
 // 无状态组件
 const ListItem=(props)=>{
-    console.log(props);
+    //console.log(props);
     const {name,pNumber,workFor,details,pImage,produceTime,price}=props.product;
     return (
         <li>
