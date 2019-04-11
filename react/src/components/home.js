@@ -26,7 +26,7 @@ class Home extends Component{
         }).then(res=>{
           [...res.data].map(val=>{
             this.state.indexNews.push(
-              <Item extra="10:30" align="top" thumb={indexNewsRecSvg} multipleLine onClick={() => { }  }  key={val.id }>
+              <Item extra={val.newDate} align="top" thumb={indexNewsRecSvg} multipleLine onClick={() => { }  }  key={val.id }>
                 {val.title}<Brief>{val.text}</Brief>
               </Item>
            )
@@ -48,8 +48,6 @@ class Home extends Component{
     render(){
       const searchStyle={fontFamily: 'arial',fontSize: 16};
       const {carousel}=this.props;
-
-
       return (
         <div className="indexContent" style={{ height:document.documentElement.clientHeight-50}}>
               {/* 顶部搜索框 */}
@@ -118,6 +116,11 @@ class Home extends Component{
       this.props.getCarouselListData();
       this.getIndexNews();
       this.getIndexProducts();
+    }
+    componentWillUnmount=()=>{
+        this.setState=(state,callback)=>{
+          return;
+        }
     }
 }
 /* 属性 mapStateToProps 必须要，否则缺少属性 */

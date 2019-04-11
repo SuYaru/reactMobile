@@ -1,6 +1,5 @@
 var initialState = {
-    counter : 0,
-    counter1: 0,
+    counter : 1,
     lists   : [],
     total   :0
 };
@@ -17,11 +16,12 @@ function counter(state = initialState ,action){
         case 'DECREASE':
             // return {counter1: state.counter1 - 1};
             // return Object.assign({},state,{counter1:state.counter1 - 1});
-            return {...state,counter1:state.counter1-1};
+            return {...state,counter:state.counter-1};
         case 'GETLISTS':   // 获取列表，payload 负载
             //console.log(action.payload);
             return Object.assign({},state,{lists:action.payload.lists,total:action.payload.total})
         default:
+
             return state;
     }
 }

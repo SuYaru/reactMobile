@@ -24,22 +24,22 @@ class mine extends Component{
     onConfirm = (startTime, endTime) => {
       document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
       this.setState({
-        show: false,
-        startTime,
-        endTime,
+            show: false,
+            startTime,
+            endTime,
       });
     }
 
     onCancel = () => {
-      document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
-      this.setState({
-        show: false,
-        startTime: undefined,
-        endTime: undefined,
-      });
+        document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
+        this.setState({
+            show: false,
+            startTime: undefined,
+            endTime: undefined,
+        });
     }
     onSelectHasDisableDate = (dates) => {
-      console.warn('onSelectHasDisableDate', dates);
+        console.warn('onSelectHasDisableDate', dates);
     }
 
    render(){

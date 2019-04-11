@@ -5,6 +5,7 @@ import { deflate } from 'zlib';
 const ListItem=(props)=>{
     //console.log(props);
     const {name,pNumber,workFor,details,pImage,produceTime,price}=props.product;
+    console.log(props.product);
     return (
         <li>
             产品名称：{name }<br/>

@@ -21,7 +21,7 @@ import ListItem from './listitem'
 
 
 class Counter extends React.Component{
-    /* changeThisPage=(page)=>{
+    changeThisPage=(page)=>{
         //console.log("change",page);
         this.props.fetchList({page:page});
     }
@@ -52,27 +52,27 @@ class Counter extends React.Component{
             jsx.push(<ListItem key={i} product={lists[i]} addToCarts={this.props.addToCarts}/>)
         }
         return jsx;
-    } */
+    }
     render(){
         // 这里为了单独拿出变量，以便在之后不需要再 this.props.变量名
         // 直接 { 变量名 } 使用
         //console.log(this.props);
         //console.log(2222);
-        /* const {counter,counter1,lists,increase,decrease,carts,fetchList,addToCarts} = this.props;
+        const {counter,counter1,lists,increase,decrease,carts,fetchList,addToCarts} = this.props;
 
         if(!lists){
             return <li>暂无数据</li>
-        } */
+        }
 
-       /*  var jsx = [];
+        var jsx = [];
         for(var i=0;i<lists.length;i++){
             jsx.push(<li key={i}>{lists[i].name}</li>)
-        } */
+        }
         //console.log(this.props);
         return (
             <div>
                 这里是Counter 主页面
-                {/*Counter: {counter}
+               Counter: {counter}
                  <br/>
                 Counter1: {counter1}
                 <br/>
@@ -80,7 +80,7 @@ class Counter extends React.Component{
                 {this.showList()}
                 <br/>
                 <button onClick={increase}>increase</button>
-                <button onClick={decrease}>decrease</button> */}
+                <button onClick={decrease}>decrease</button>
             </div>
         )
     }

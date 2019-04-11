@@ -6,3 +6,4 @@ export Navigator from './navigator.js';
 export Mine from './mine.js';
 export Products from './products.js';
 export ProductsDetail from './productDetail.js';
+export NewDetail from './newDetail.js';

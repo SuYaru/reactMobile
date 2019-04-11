@@ -33,7 +33,8 @@ module.exports=function(){
                 produceTime:Mock.Random.date('yyyy-MM-dd'),
                 price:Mock.mock({
                     'number|1-100':1
-                })
+                }),
+                pLocal:Mock.Random.province()+Mock.Random.city()
             }
         }),
         carousel:_.times(5, function(n){
@@ -45,13 +46,16 @@ module.exports=function(){
                 carUrl:Mock.Random.url()
             }
         }),
-        news:_.times(50, function(n){
+        news:_.times(25, function(n){
             return{
                 id:n,
                 title:Mock.Random.ctitle(),
-                carImg:Mock.Random.image('200x100',Mock.Random.color()),
-                text:Mock.Random.cparagraph(),
-                carUrl:Mock.Random.url()
+                author:Mock.Random.cname(),
+                newImg:Mock.Random.image('200x100',Mock.Random.color()),
+                text:Mock.Random.csentence(40,50),
+                newUrl:Mock.Random.url(),
+                newDate:Mock.Random.date(),
+                newCopy:Mock.Random.province()+Mock.Random.city()
             }
         }),
         newsKind:_.times(5, function(n){

@@ -14,11 +14,12 @@ export default class Products extends React.Component {
         currentPage:1
       };
   }
-  getProductData=(params)=>{
+  getProductData=()=>{
       axios({
         url:`http://localhost:3000/product?_page=${this.state.currentPage}&_limit=5&_order=asc&_sort=id`,
         method:'get'
       }).then(res=>{
+        console.log(res.data);
           this.setState ({
             list:[...this.state.list,...res.data],
             page:this.state.page+1
@@ -28,6 +29,11 @@ export default class Products extends React.Component {
   componentDidMount(){
       this.getProductData();
   }
+ /*  componentWillUnmount = () => {
+    this.setState = (state,callback)=>{
+      return;
+    };
+  } */
   onEndReached=()=>{
       this.getProductData();
   }
@@ -36,7 +42,7 @@ export default class Products extends React.Component {
   }
   // 渲染每一行
   renderRow=(rowData,rowID)=>{
-    var productUrl=`/productDetail/${rowData.id}`
+    var productUrl=`/productDetail/${rowData.id}`;
     return (
       <NavLink to={productUrl}>
           <div key={rowData.id} style={{ padding: '0 15px' }}>
@@ -58,30 +64,19 @@ export default class Products extends React.Component {
       </NavLink>
     )
   }
-  render() {
-    return (
-      <div>
-            <NavBar  mode="dark" icon={<Icon type="left" />}
-            onLeftClick={() =>{this.backGoing()}}
-            rightContent={[
-              <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-              <Icon key="1" type="ellipsis" />,
-            ]}
-            >畅销产品</NavBar>
-          <ListView
-          dataSource={this.state.dataSource.cloneWithRows(this.state.list)}
-          renderRow={(rowData, sectionID, rowID, highlightRow) => this.renderRow(rowData,rowID)}
-          style={{
-            height: document.documentElement.clientHeight-95,
-            overflow: 'auto',
-          }}
-          scrollRenderAheadDistance={500}
-          onEndReached={this.onEndReached}
-          onEndReachedThreshold={10}
-        />
-      </div>
-
-    );
-  }
+    render() {
+        console.log(111111111);
+        return (
+            <div>
+                  <NavBar  mode="dark" icon={<Icon type="left" />}
+                  onLeftClick={() =>{this.backGoing()}}
+                  rightContent={[
+                    <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+                    <Icon key="1" type="ellipsis" />,
+                  ]}
+                  >畅销产品</NavBar>
+            </div>
+        );
+    }
 }
 

@@ -1,3 +1,3 @@
-export { addToCarts } from './carts'
-export { increase,decrease,fetchList } from './counter.js'
+export { addToCarts,increase,decrease} from './carts'
+export { fetchList } from './counter.js'
 export { getCarouselListData } from './getCarouselListData.js'

@@ -1,6 +1,6 @@
 import React ,{Component} from 'react';
 import { TabBar } from 'antd-mobile';
-import { Home,News,Products,Mine,ProductsDetail,Carts} from './index'
+import { Home,News,Products,Mine,ProductsDetail,NewDetail,Carts} from './index'
 import { indexSvg,index2Svg,newsSvg,news2Svg,productSvg,product2Svg,mineSvg,mine2Svg,cartsSvg,carts2Svg} from '../assets/index'
 import { HashRouter as Router,Route,Switch} from 'react-router-dom'
 export default class Navigator extends Component{
@@ -10,17 +10,18 @@ export default class Navigator extends Component{
           selectedTab: 'blueTab',
         };
       }
-
     renderContent(pageText) {
       return (
         <div style={{ backgroundColor: 'rgb(242,242,242)', height: '100%', textAlign: 'left' }}>
             <Switch>
                 <Route path="/" component={Home} exact/>
-                <Route path="/news" component={News}/>
+                <Route path="/news" component={News} exact/>
+                <Route path="/newDetail/:id" component={NewDetail}/>
                 <Route path="/products" component={Products}/>
                 <Route path="/productDetail/:id" component={ProductsDetail}/>
                 <Route path="/carts" component={Carts}/>
                 <Route path="/mine" component={Mine}/>
+                <Route path="/counter" component={Mine}/>
             </Switch>
         </div>
       );
