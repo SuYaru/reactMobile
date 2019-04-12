@@ -1,10 +1,10 @@
 import React ,{Component} from 'react';
 import {connect} from  'react-redux';
-import { Flex,TextareaItem ,List,Button, Calendar } from 'antd-mobile';
+import { Flex,TextareaItem ,List,Button, Calendar,Modal,InputItem } from 'antd-mobile';
 import { userSvg,familySvg,calenderSvg,settingSvg,arrow_rightSvg,order_01Svg,order_02Svg,order_03Svg,order_04Svg,order_05Svg,tool_01Svg,tool_02Svg,tool_03Svg,tool_04Svg,tool_05Svg,tool_06Svg,tool_07Svg,tool_08Svg} from '../assets/index'
 import { checkUser } from '../actions'
+import ListItem from 'antd-mobile/lib/list/ListItem';
 const mapStateToProps = state=>{
-    console.log(state);
     return {
         user:state.user,
         show:false,
@@ -12,43 +12,35 @@ const mapStateToProps = state=>{
     }
 }
 const now = new Date();
-class mine extends Component{
+const alert = Modal.alert;
+class Mine extends Component{
     originbodyScrollY = document.getElementsByTagName('body')[0].style.overflowY;
     constructor(props) {
         super(props);
-        /* this.state = {
-          config: {},
-        }; */
-
     };
 
     componentDidMount(){
-        console.log(this.state);
-        console.log(this.props);
+        console.log('进入！');
     }
     componentWillUnmount=()=>{
         this.setState=(state,callback)=>{
           return;
         }
     }
+    checkUser=()=>{
+        var username=document.querySelector('#username').value;
+        var password=document.querySelector('#password').value;
+        if(username==this.props.user.username && password==this.props.user.password){
+             this.props.checkUser();
+        }else{
+            alert('提示', '您的账号或密码输入错误', [
+                { text: '取消'},
+                {text: '确定'},
+            ])
+        }
+    }
     backHistory=()=>{
         this.props.history.goBack();
-    }
-    login=()=>{
-        var username=document.getElementById('username').value;
-        var password=document.getElementById('password').value;
-        console.log(username,password);
-        console.log(this.props.user.username,this.props.user.password);
-        if(username==this.props.user.username && password==this.props.user.password){
-           /*  this.setProps({
-                user:{
-                    login:true
-                }
-            }) */
-            console.log(666);
-            this.props.user.login=true;
-        }
-
     }
     onConfirm = (startTime, endTime) => {
       document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
@@ -88,7 +80,7 @@ class mine extends Component{
                       </Flex.Item>
                       <Flex.Item style={{flex:2}}>
                           <Flex direction='column' align='start'>
-                              <Flex.Item>Username</Flex.Item>
+                              <Flex.Item>{this.props.user.username}</Flex.Item>
                               <Flex.Item style={relatedStyle} align='center'> <span>关联用户账号</span> </Flex.Item>
                           </Flex>
                       </Flex.Item>
@@ -211,42 +203,48 @@ class mine extends Component{
         )
     }else{
         return (
-            <div>
-                <Flex direction='column' style={{ background:'white'}}>
+            <div style={{height:'100%'}}>
+                <Flex direction='column' style={{ background:'white',height:'100%'}}>
                     <Flex.Item style={{margin:'10px'}}>
                         <Flex >
                             <Flex.Item style={{ flex:3}} >您需要登陆才能继续访问[user:123,pw:123]</Flex.Item>
-                            <Flex.Item> <Button type="ghost" size="small" inline>关闭</Button></Flex.Item>
+                            <Flex.Item><Button type="ghost" size="small" inline>关闭</Button></Flex.Item>
                         </Flex>
                     </Flex.Item>
-                    <Flex.Item>
-                        <Flex direction='column'>
-                            <Flex.Item >
-                                <img src={userSvg} style={{width:'50px',height:'50px'}}></img>
-                            </Flex.Item>
-                            <Flex.Item>
-                                <List>
-                                    <TextareaItem
-                                    title="用户名"
-                                    placeholder="请输入用户名"
-                                    id='username'
-                                    />
-                                    <TextareaItem
-                                    title="密码"
-                                    placeholder="请输入密码"
-                                    id='password'
-                                    />
-                                    <List.Item>
-                                    <div
-                                        style={{ width: '100%', color: '#108ee9', textAlign: 'center' }}
-                                        onClick={()=>{checkUser({'name':'aaaa'})}}
-                                    >
-                                        登陆
-                                    </div>
-                                    </List.Item>
-                                </List>
-                            </Flex.Item>
-                        </Flex>
+                    <Flex.Item style={{flex:11}} >
+                        <div>
+                            <Flex direction='column' style={{flex:1}} >
+                                <Flex.Item >
+                                    <img src={userSvg} style={{width:'50px',height:'50px'}}></img>
+                                </Flex.Item>
+                                <Flex.Item>
+                                    <List>
+                                        <InputItem
+                                            id="username"
+                                            clear
+                                            placeholder="用户名"
+                                            ref={el => this.autoFocusInst = el}
+                                        >用户名</InputItem>
+                                        <InputItem
+                                            id="password"
+                                            clear
+                                            placeholder="****"
+                                            type="password"
+
+                                            ref={el => this.autoFocusInst = el}
+                                        >密码</InputItem>
+                                        <List.Item>
+                                            <div
+                                                style={{ width: '100%', color: '#108ee9', textAlign: 'center' }}
+                                                onClick={this.checkUser}
+                                            >
+                                                登陆
+                                            </div>
+                                        </List.Item>
+                                    </List>
+                                </Flex.Item>
+                            </Flex>
+                        </div>
                     </Flex.Item>
                 </Flex>
 
@@ -256,4 +254,5 @@ class mine extends Component{
 
   }
 }
-export default connect(mapStateToProps,{checkUser})(mine);
+const MineContainer = connect(mapStateToProps,{checkUser})(Mine);
+export default MineContainer;

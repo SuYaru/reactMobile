@@ -5,11 +5,9 @@ import { Card,NavBar,Icon,Button} from 'antd-mobile';
 import { increase,decrease,fetchList,addToCarts} from '../actions'
 import { pluseSvg,decreaseSvg } from '../assets/'
 const mapStateToProps = (state)=>{
+    console.log(state);
     return {
-        counter : state.counter.counter,
-        counter1: state.counter.counter1,
-        lists   : state.counter.lists,
-        total   :state.counter.total,
+        counter : state.carts[0].counter,
         carts   :state.carts
     }
 }
@@ -29,8 +27,7 @@ class productDetail extends Component{
     }
     componentWillUnmount=()=>{
         this.setState=(state,callback)=>{
-        console.log('un mouted ');
-        return;
+            return;
         }
     }
    backGoing=()=>{
@@ -72,7 +69,7 @@ class productDetail extends Component{
                             <div>
                                 <Button style={{width:'21px',height:'25px',background: `url(${decreaseSvg}) center center /  21px 21px no-repeat`,display:'inline-block',float:'left'}} onClick={decrease}></Button>
                                 <span style={numStyle}>{counter}</span>
-                                <Button style={{width:'21px',height:'25px',background: `url(${pluseSvg}) center center /  21px 21px no-repeat`,display:'inline-block',float:'left'}}onClick={increase}></Button>
+                                <Button style={{width:'21px',height:'25px',background: `url(${pluseSvg}) center center /  21px 21px no-repeat`,display:'inline-block',float:'left'}} onClick={increase}></Button>
                             </div>}
                         extra={<Button type="primary" inline size="small" style={{ marginRight: '4px',marginTop:'10px'}} onClick={(productInfo)=>{addToCarts(this.state.product)}}>加入购物车</Button>} />
                     </Card>

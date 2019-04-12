@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Card,Tabs} from 'antd-mobile';
 import axios from 'axios'
 const mapStateToProps = state=>{
-  console.log(state);
   return {
     carts: state.carts,
   }
@@ -35,32 +34,34 @@ class Carts extends Component{
        const numStyle={width:'50px',height:'25px',lineHeight:'25px',textAlign:'center',float:'left'}
        const imgStyle={width:'100%',height:'100%',fontSize: '12px',display:'inline-block'}
        var jsx=[];
-       console.log(this.props.carts);
-      if(Array.prototype.isPrototypeOf(this.props.carts)){
-            this.props.carts.map(val=>{
-              jsx.push(
-                <Card  key={val.id}>
-                    <Card.Header
-                        title={val.name}
-                        thumbStyle={productStyle}
-                        extra={<span style={innserStyle}>原产地：{val.pLocal}</span>}
-                    />
-                    <Card.Body>
-                        <img src={val.pImage} style={imgStyle}></img>
-                        <div style={innserStyle}>产品描述：{val.details}</div>
-                        <div style={innserStyle}>产品功效：{val.workFor}</div>
-                        <div style={innserStyle}>当前库存：{val.pNumber.number}</div>
-                    </Card.Body>
-                    <Card.Footer content={<span>生产日期：{val.produceTime}</span>} extra={<div>价格：{val.price.number}￥</div>} />
-                    <Card.Footer content={
-                        <div>
-                          <span style={numStyle}> 总数：{val.quantity}</span>
-                        </div>}
-                    />
-                </Card>
-              )
-          })
-      }else{
+       //this.props.carts.shift();
+       if(this.props.carts.length>1){
+            this.props.carts.forEach((val,index)=>{
+                if(index>=1){
+                    jsx.push(
+                      <Card  key={val.id}>
+                          <Card.Header
+                              title={val.name}
+                              thumbStyle={productStyle}
+                              extra={<span style={innserStyle}>原产地：{val.pLocal}</span>}
+                          />
+                          <Card.Body>
+                              <img src={val.pImage} style={imgStyle}></img>
+                              <div style={innserStyle}>产品描述：{val.details}</div>
+                              <div style={innserStyle}>产品功效：{val.workFor}</div>
+                              <div style={innserStyle}>当前库存：{val.pNumber.number}</div>
+                          </Card.Body>
+                          <Card.Footer content={<span>生产日期：{val.produceTime}</span>} extra={<div>价格：{val.price.number}￥</div>} />
+                          <Card.Footer content={
+                              <div>
+                                <span style={numStyle}> 总数：{val.quantity}</span>
+                              </div>}
+                          />
+                      </Card>
+                    )
+                }
+            });
+       }else{
           jsx.push(
             <Card key={'nothing'}>
                 <Card.Body>
@@ -68,7 +69,7 @@ class Carts extends Component{
                 </Card.Body>
             </Card>
           )
-      }
+       }
       return jsx;
     }
     render(){

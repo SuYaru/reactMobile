@@ -19,7 +19,6 @@ export default class Products extends React.Component {
         url:`http://localhost:3000/product?_page=${this.state.currentPage}&_limit=5&_order=asc&_sort=id`,
         method:'get'
       }).then(res=>{
-        console.log(res.data);
           this.setState ({
             list:[...this.state.list,...res.data],
             page:this.state.page+1
@@ -65,7 +64,6 @@ export default class Products extends React.Component {
     )
   }
     render() {
-        console.log(111111111);
         return (
             <div>
                   <NavBar  mode="dark" icon={<Icon type="left" />}
