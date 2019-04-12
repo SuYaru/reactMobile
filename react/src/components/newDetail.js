@@ -7,7 +7,6 @@ export default class newDetail extends Component{
         new:{},
     };
    componentDidMount(){
-        //console.log(this.props.match.params);
         axios({
             url:`http://localhost:3000/news/${this.props.match.params.id}`,
             method:'get'
@@ -19,11 +18,12 @@ export default class newDetail extends Component{
         })
    }
    backGoing=()=>{
-    this.props.history.goBack();
+        this.props.history.goBack();
    }
    render(){
        const newInfo =this.state.new;
        const newStyle={width:'50px',height:'50px'}
+       const contentStyle={textIndent:'2em',margin:'10px 0'}
        if(Object.keys(newInfo).length!=0){
             return (
                 <div>
@@ -38,14 +38,14 @@ export default class newDetail extends Component{
                     <Card>
                         <Card.Header
                             title={newInfo.title}
-                            thumb={newInfo.newImg}
                             thumbStyle={newStyle}
                             extra={<span>作者：{newInfo.author}</span>}
                         />
                         <Card.Body>
-                            <div>{newInfo.text}</div>
+                            <img src={newInfo.newImg} />
+                            <div style={contentStyle}>{newInfo.text}</div>
                         </Card.Body>
-                        <Card.Footer content={newInfo.newCopy} extra={<div>{newInfo.newDate}</div>} />
+                        <Card.Footer content={newInfo.newCopy}  extra={<div>{newInfo.newDate}</div>} />
                     </Card>
                 </div>
             )

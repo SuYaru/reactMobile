@@ -17,7 +17,7 @@ export default class Navigator extends Component{
                 <Route path="/" component={Home} exact/>
                 <Route path="/news" component={News} exact/>
                 <Route path="/newDetail/:id" component={NewDetail}/>
-                <Route path="/products" component={Products}/>
+                <Route path="/products" component={Products} exact/>
                 <Route path="/productDetail/:id" component={ProductsDetail}/>
                 <Route path="/carts" component={Carts}/>
                 <Route path="/mine" component={Mine}/>
@@ -121,6 +121,7 @@ export default class Navigator extends Component{
                     });
                 }}
               >
+              {this.renderContent('products')}
               </TabBar.Item>
               <TabBar.Item
                 icon={

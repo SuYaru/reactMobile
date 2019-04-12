@@ -23,7 +23,7 @@ module.exports=function(){
         product:_.times(100, function(n){
             return{
                 id:n,
-                name:Mock.mock('@name'),
+                name:Mock.Random.ctitle(3),
                 pNumber:Mock.mock({
                     'number|100-200':1
                 }),

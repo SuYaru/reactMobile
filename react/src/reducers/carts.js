@@ -5,6 +5,8 @@ var initialState = {
 var _ = require('lodash');
 
 function carts(state=initialState,action) {
+    console.log('____');
+
     switch(action.type){
         case 'INCREASE':
         // return {counter: state.counter + 1};
@@ -16,6 +18,9 @@ function carts(state=initialState,action) {
             // return {counter1: state.counter1 - 1};
             // return Object.assign({},state,{counter1:state.counter1 - 1});
             return {...state,counter:state.counter-1};
+        case 'CHECK':
+            console.log(11);
+            return {...state}
         case "ADDTOCARTS":
        // 在 state 里寻找，id 为  action.payload.id 的数据下标
         var pos=_.findIndex(state,{id:action.payload.id});

@@ -29,11 +29,11 @@ export default class Products extends React.Component {
   componentDidMount(){
       this.getProductData();
   }
- /*  componentWillUnmount = () => {
+  componentWillUnmount = () => {
     this.setState = (state,callback)=>{
       return;
     };
-  } */
+  }
   onEndReached=()=>{
       this.getProductData();
   }
@@ -75,7 +75,18 @@ export default class Products extends React.Component {
                     <Icon key="1" type="ellipsis" />,
                   ]}
                   >畅销产品</NavBar>
+                  <ListView
+                    dataSource={this.state.dataSource.cloneWithRows(this.state.list)}
+                    renderRow={(rowData, sectionID, rowID, highlightRow) => this.renderRow(rowData,rowID)}
+                    style={{
+                      height: document.documentElement.clientHeight-95,
+                      overflow: 'auto',
+                    }}
+                    scrollRenderAheadDistance={500}
+                    onEndReached={this.onEndReached}
+                    onEndReachedThreshold={10} />
             </div>
+
         );
     }
 }

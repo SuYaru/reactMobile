@@ -40,7 +40,9 @@ class productDetail extends Component{
        const productInfo =this.state.product;
        const {counter,increase,decrease,addToCarts} = this.props;
        const productStyle={width:'50px',height:'50px'}
-       const innserStyle={margin:'10px',fontSize: '16px'}
+       const innserStyle={margin:'10px',fontSize: '12px'}
+       const localStyle={margin:'10px 10px 10px -10px',fontSize: '12px',display:'inline-block'}
+       const imgStyle={width:'100%',height:'100%',fontSize: '12px',display:'inline-block'}
        const numStyle={width:'50px',height:'25px',lineHeight:'25px',textAlign:'center',float:'left'}
        if(Object.keys(productInfo).length!=0){
             return (
@@ -56,15 +58,15 @@ class productDetail extends Component{
                     <Card>
                         <Card.Header
                             title={productInfo.name}
-                            thumb={productInfo.pImage}
                             thumbStyle={productStyle}
-                            extra={<span style={innserStyle}>原产地：{productInfo.pLocal}</span>}
                         />
                         <Card.Body>
+                            <img src={productInfo.pImage} style={imgStyle}></img>
                             <div style={innserStyle}>产品描述：{productInfo.details}</div>
                             <div style={innserStyle}>产品功效：{productInfo.workFor}</div>
                             <div style={innserStyle}>当前库存：{productInfo.pNumber.number}</div>
                         </Card.Body>
+                        <Card.Footer extra={<span style={localStyle}>原产地：{productInfo.pLocal}</span>}></Card.Footer>
                         <Card.Footer content={<span>生产日期：{productInfo.produceTime}</span>} extra={<div>价格：{productInfo.price.number}￥</div>} />
                         <Card.Footer content={
                             <div>
