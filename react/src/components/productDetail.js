@@ -5,7 +5,6 @@ import { Card,NavBar,Icon,Button} from 'antd-mobile';
 import { increase,decrease,fetchList,addToCarts} from '../actions'
 import { pluseSvg,decreaseSvg } from '../assets/'
 const mapStateToProps = (state)=>{
-    console.log(state);
     return {
         counter : state.carts[0].counter,
         carts   :state.carts
